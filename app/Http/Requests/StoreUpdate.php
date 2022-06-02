@@ -24,7 +24,7 @@ class StoreUpdate extends FormRequest
     public function rules()
     {
         return [
-           'texto' => 'required|string|min:1|max:200',
+           'texto' => 'required|string|min:1',
         ];
     }
 }
