@@ -5,17 +5,19 @@
 
 @section('content')
     <div class="sair flex shadow-lg z-50"
-        style="position: fixed; top: 0px; left: 0px; background-color: rgb(61, 61, 61); width: 371; padding-top:16px; padding-left: 20px">
+        style="position: fixed; top: 0px; left: 0px; background-color: rgb(61, 61, 61); width: 426; padding-top:16px; padding-left: 20px">
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button class="bg-red-500 hover:bg-red-700 text-white focus:outline-0 font-bold py-2 px-4 rounded shadow-lg"
                 type="submit">Sair</button>
         </form>
+        <a href="{{ route('mapa.home') }}" class="bg-blue-500 hover:bg-blue-700 focus:outline-0 text-white font-bold py-2 px-4 rounded shadow-lg" style="height:40px; margin-left:30px">Voltar</a>
         <form action="{{ route('mapa.novo') }}" method="POST">
             @csrf
+            <input type="hidden" name="idmapa" value="{{$idmapa}}">
             <button
                 class="bg-purple-500 hover:bg-purple-700 focus:outline-0 text-white font-bold py-2 px-4 rounded shadow-lg"
-                style="margin-left:82px" type="submit">Limpar Mapa Mental</button>
+                style="margin-left:30px" type="submit">Limpar Mapa Mental</button>
         </form>
     </div>
     <br><br><br><br>
@@ -41,7 +43,7 @@
     }
 
     function load() {
-        var margin = -(document.getElementById("texto1").offsetWidth + 20) / 2 + 100;
+        var margin = -(document.querySelector("[data-primeiro='1']").offsetWidth + 20) / 2 + 100;
         document.getElementById("corp").style = 'margin-left:' + margin;
         document.querySelector("[data-ultimo='1']").classList.add('border-purple-500');
         window.scrollTo(4260, 0);
@@ -67,7 +69,7 @@
         let deletar = 46;
         let enter = 13;
 
-        var posixMax = parseInt(document.querySelector('#select1').getAttribute('data-width')) - 200;
+        var posixMax = parseInt(document.querySelector("[data-first='1']").getAttribute('data-width')) - 200;
 
         // if (e.keyCode === right || e.keyCode === left || e.keyCode === up || e.keyCode === down || e.keyCode ===
         //     tab || e.keyCode === deletar) {
@@ -77,7 +79,7 @@
                 var id = document.querySelector('.border-purple-500').getAttribute('data-id');
                 var name = 'textarea' + id;
                 document.getElementById(name).blur();
-
+                
                 var posix = parseInt(document.querySelector('.border-purple-500').getAttribute(
                     'data-posix'));
                 var width = parseInt(document.querySelector('.border-purple-500').getAttribute(

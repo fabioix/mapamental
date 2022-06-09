@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::middleware(['auth'])->group(function () {
-    Route::get('/mapa', [MapaController::class, 'mapa'])->name('mapa.index');
+    Route::get('/home', [MapaController::class, 'home'])->name('mapa.home');
+    Route::post('/home/new', [MapaController::class,'new'])->name('mapa.new');
+    Route::post('/home/remove', [MapaController::class,'remove'])->name('mapa.remove');
+    Route::get('/mapa/{id}', [MapaController::class, 'mapa'])->name('mapa.index');
     Route::post('/mapa/novo', [MapaController::class,'novo'])->name('mapa.novo');
     Route::post('/mapa/add', [MapaController::class,'add'])->name('mapa.add');
     Route::post('/mapa/delete', [MapaController::class,'delete'])->name('mapa.delete');
